@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 1f;
     public float jumpForce = 3f;
     public float fireRange = 5f;
-    public float rotationXSensitivity = 1f;
+    public float rotationXSensitivity;
+    public float rotationYSensitivity;
     public GameObject explosion;
 
     private PlayerInputAction mInputAction;
@@ -17,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody mRigidbody;
     private Transform mFirePoint;
     private Transform mCameraTransform;
-    private float mRotationX = 0f;
+    private float mRotationX;
     private bool jumpPressed = false;
     private bool onGround = true;
 
@@ -90,7 +91,7 @@ public class PlayerController : MonoBehaviour
         #region Rotacion
         Vector2 deltaPos = mViewAction.ReadValue<Vector2>();
         transform.Rotate(
-            Vector3.up * deltaPos.x * Time.deltaTime
+            Vector3.up * deltaPos.x * Time.deltaTime * rotationYSensitivity
         );
 
         mRotationX -= deltaPos.y * rotationXSensitivity;

@@ -200,7 +200,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""0ed515f7-6513-444e-862d-a1774d4c48ed"",
-                    ""path"": ""<Keyboard>/ctrl"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
