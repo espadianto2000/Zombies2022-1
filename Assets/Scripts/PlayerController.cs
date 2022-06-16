@@ -93,8 +93,9 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(
             Vector3.up * deltaPos.x * Time.deltaTime * rotationYSensitivity
         );
-
         mRotationX -= deltaPos.y * rotationXSensitivity;
+        mRotationX = mRotationX > 90 ? 90 : mRotationX;
+        mRotationX = mRotationX < -90 ? -90 : mRotationX;
         mCameraTransform.localRotation = Quaternion.Euler(
             Mathf.Clamp(mRotationX, -90f, 90f),
             0f,
