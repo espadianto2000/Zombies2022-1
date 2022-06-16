@@ -12,6 +12,18 @@ public class PlayerController : MonoBehaviour
     public float rotationYSensitivity;
     public GameObject explosion;
 
+
+    // --- Muzzle ---
+    public GameObject muzzlePrefab;
+    public GameObject muzzlePosition;
+
+    public GameObject projectilePrefab;
+    public GameObject projectileToDisableOnFire;
+    // --- Audio ---
+    public AudioClip GunShotClip;
+    public AudioSource source;
+    public Vector2 audioPitch = new Vector2(.9f, 1.1f);
+
     private PlayerInputAction mInputAction;
     private InputAction mMovementAction;
     private InputAction mViewAction;
@@ -21,7 +33,7 @@ public class PlayerController : MonoBehaviour
     private float mRotationX;
     private bool jumpPressed = false;
     private bool onGround = true;
-
+    [SerializeField] private float timeLastFired;
 
     private void Awake()
     {
@@ -42,6 +54,7 @@ public class PlayerController : MonoBehaviour
         mInputAction.Player.Fire.performed += DoFire;
         mInputAction.Player.Fire.Enable();
 
+
         mViewAction = mInputAction.Player.View;
         mInputAction.Player.View.Enable();
 
@@ -49,6 +62,7 @@ public class PlayerController : MonoBehaviour
         mMovementAction.Enable();
 
     }
+
 
 
     private void DoFire(InputAction.CallbackContext obj)
@@ -75,6 +89,58 @@ public class PlayerController : MonoBehaviour
             Color.red,
             .25f
         );
+        FireWeapon();
+    }
+    
+    public void FireWeapon()
+    {
+
+        var flash = Instantiate(muzzlePrefab, muzzlePosition.transform);
+
+        // --- Shoot Projectile Object ---
+        if (projectilePrefab != null)
+        {
+            GameObject newProjectile = Instantiate(projectilePrefab, muzzlePosition.transform.position, muzzlePosition.transform.rotation, transform);
+        }
+
+        // --- Disable any gameobjects, if needed ---
+        if (projectileToDisableOnFire != null)
+        {
+            projectileToDisableOnFire.SetActive(false);
+            Invoke("ReEnableDisabledProjectile", 3);
+        }
+
+        // --- Handle Audio ---
+        if (source != null)
+        {
+            // --- Sometimes the source is not attached to the weapon for easy instantiation on quick firing weapons like machineguns, 
+            // so that each shot gets its own audio source, but sometimes it's fine to use just 1 source. We don't want to instantiate 
+            // the parent gameobject or the program will get stuck in a loop, so we check to see if the source is a child object ---
+            if (source.transform.IsChildOf(transform))
+            {
+                source.Play();
+            }
+            else
+            {
+                // --- Instantiate prefab for audio, delete after a few seconds ---
+                AudioSource newAS = Instantiate(source);
+                if ((newAS = Instantiate(source)) != null && newAS.outputAudioMixerGroup != null && newAS.outputAudioMixerGroup.audioMixer != null)
+                {
+                    // --- Change pitch to give variation to repeated shots ---
+                    newAS.outputAudioMixerGroup.audioMixer.SetFloat("Pitch", UnityEngine.Random.Range(audioPitch.x, audioPitch.y));
+                    newAS.pitch = UnityEngine.Random.Range(audioPitch.x, audioPitch.y);
+
+                    // --- Play the gunshot sound ---
+                    newAS.PlayOneShot(GunShotClip);
+
+                    // --- Remove after a few seconds. Test script only. When using in project I recommend using an object pool ---
+                    Destroy(newAS.gameObject, 4);
+                }
+            }
+        }
+
+        // --- Insert custom code here to shoot projectile or hitscan from weapon ---
+
     }
 
     private void OnDisable()
