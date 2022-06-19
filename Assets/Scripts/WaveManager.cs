@@ -66,7 +66,8 @@ public class WaveManager : MonoBehaviour
     }
     public void iniciarWaves()
     {
-        enemyAmount = int.Parse(gm.menuInicio.transform.GetChild(0).GetComponent<InputField>().text);
+        enemyAmount = int.Parse(gm.menuInicio.transform.GetChild(0).GetComponent<InputField>().text != "" ? gm.menuInicio.transform.GetChild(0).GetComponent<InputField>().text : "0");
+        gm.quitarPausa();
         iniciar = true;
     }
     public void InstanciarWave()

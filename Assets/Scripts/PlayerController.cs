@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public float fireRange = 15f;
     public float rotationXSensitivity;
     public float rotationYSensitivity;
+    
     private float timeDelay;
     private float tiempoRecarga;
     // public GameObject impacto;
@@ -40,7 +41,9 @@ public class PlayerController : MonoBehaviour
     private Rigidbody mRigidbody;
     private Transform mFirePoint;
     private Transform mCameraTransform;
+    
     private float mRotationX;
+    private float mRotationY;
     private bool jumpPressed = false;
     private bool onGround = true;
     [SerializeField] private float timeLastFired;
@@ -77,6 +80,9 @@ public class PlayerController : MonoBehaviour
 
         mInputAction.Player.Recarga.performed += Recargar;
         mInputAction.Player.Recarga.Enable();
+
+        mInputAction.Player.Pause.performed += GameObject.Find("GameManager").GetComponent<GameManager>().manejoPausa;
+        mInputAction.Player.Pause.Enable();
     }
     private void Recargar(InputAction.CallbackContext obj)
     {
@@ -203,14 +209,17 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(
             Vector3.up * deltaPos.x * Time.deltaTime * rotationYSensitivity
         );
-        mRotationX -= deltaPos.y * rotationXSensitivity;
-        mRotationX = mRotationX > 90 ? 90 : mRotationX;
-        mRotationX = mRotationX < -90 ? -90 : mRotationX;
-        mCameraTransform.localRotation = Quaternion.Euler(
-            Mathf.Clamp(mRotationX, -90f, 90f),
-            0f,
-            0f
-        );
+        if (!GameObject.Find("GameManager").GetComponent<GameManager>().pausaEstado)
+        {
+            mRotationX -= deltaPos.y * rotationXSensitivity;
+            mRotationX = mRotationX > 90 ? 90 : mRotationX;
+            mRotationX = mRotationX < -90 ? -90 : mRotationX;
+            mCameraTransform.localRotation = Quaternion.Euler(
+                Mathf.Clamp(mRotationX, -90f, 90f),
+                0f,
+                0f
+            );
+        }
         #endregion
 
         #region Movimiento

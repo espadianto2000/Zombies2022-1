@@ -80,6 +80,15 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""234b5e80-6227-46c6-80d0-7ba3dbfd8c73"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -269,6 +278,17 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                     ""action"": ""Recarga"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bc35aada-5441-4986-93f3-aaad3ee680f9"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -283,6 +303,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         m_Player_View = m_Player.FindAction("View", throwIfNotFound: true);
         m_Player_HoldFire = m_Player.FindAction("HoldFire", throwIfNotFound: true);
         m_Player_Recarga = m_Player.FindAction("Recarga", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -348,6 +369,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_View;
     private readonly InputAction m_Player_HoldFire;
     private readonly InputAction m_Player_Recarga;
+    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @PlayerInputAction m_Wrapper;
@@ -358,6 +380,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         public InputAction @View => m_Wrapper.m_Player_View;
         public InputAction @HoldFire => m_Wrapper.m_Player_HoldFire;
         public InputAction @Recarga => m_Wrapper.m_Player_Recarga;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -385,6 +408,9 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                 @Recarga.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRecarga;
                 @Recarga.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRecarga;
                 @Recarga.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRecarga;
+                @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -407,6 +433,9 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                 @Recarga.started += instance.OnRecarga;
                 @Recarga.performed += instance.OnRecarga;
                 @Recarga.canceled += instance.OnRecarga;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -419,5 +448,6 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         void OnView(InputAction.CallbackContext context);
         void OnHoldFire(InputAction.CallbackContext context);
         void OnRecarga(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }
