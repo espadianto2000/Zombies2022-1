@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public float fireRange = 15f;
     public float rotationXSensitivity;
     public float rotationYSensitivity;
+    public GameManager gm;
     
     private float timeDelay;
     private float tiempoRecarga;
@@ -81,7 +82,7 @@ public class PlayerController : MonoBehaviour
         mInputAction.Player.Recarga.performed += Recargar;
         mInputAction.Player.Recarga.Enable();
 
-        mInputAction.Player.Pause.performed += GameObject.Find("GameManager").GetComponent<GameManager>().manejoPausa;
+        mInputAction.Player.Pause.performed += gm.manejoPausa;
         mInputAction.Player.Pause.Enable();
     }
     private void Recargar(InputAction.CallbackContext obj)
@@ -209,7 +210,7 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(
             Vector3.up * deltaPos.x * Time.deltaTime * rotationYSensitivity
         );
-        if (!GameObject.Find("GameManager").GetComponent<GameManager>().pausaEstado)
+        if (!gm.pausaEstado)
         {
             mRotationX -= deltaPos.y * rotationXSensitivity;
             mRotationX = mRotationX > 90 ? 90 : mRotationX;
@@ -246,6 +247,10 @@ public class PlayerController : MonoBehaviour
             onGround = false;
         }
         #endregion
+
+        rotationXSensitivity = (0.049f * gm.menuPausa.transform.GetChild(6).GetComponent<Slider>().value) + 0.01f;
+        rotationYSensitivity = (19f * gm.menuPausa.transform.GetChild(5).GetComponent<Slider>().value) + 1f;
+
         //Disparo
         timeDelay += Time.deltaTime;
         if (timeDelay>=0.1f && mHoldFire.phase == InputActionPhase.Performed && munActual>0 && !recarga.IsActive())

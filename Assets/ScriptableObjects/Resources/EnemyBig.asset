@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7bbd9832f46d7c146b08387b082a839e, type: 3}
-  m_Name: EnemySmall
+  m_Name: EnemyBig
   m_EditorClassIdentifier: 
-  enemyName: EnemySmall
-  prefab: {fileID: 0}
-  speed: 3
-  health: 50
+  enemyName: EnemyBig
+  prefab: {fileID: 8679488402730953951, guid: e2ff0f3f47b54d0408d566798041c6da, type: 3}
+  speed: 0.5
+  health: 100

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
         menuPausa.SetActive(true);
         pausaEstado = true;
         Cursor.lockState = CursorLockMode.None;
+        menuPausa.transform.GetChild(2).GetComponent<InputField>().text = GameObject.Find("WaveManager").GetComponent<WaveManager>().enemyAmount + "";
         Time.timeScale = 0;
     }
     public void quitarPausa()
