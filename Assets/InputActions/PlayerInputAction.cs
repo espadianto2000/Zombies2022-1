@@ -71,6 +71,15 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Recarga"",
+                    ""type"": ""Button"",
+                    ""id"": ""b94289d5-df6a-4fa4-b4b8-75291cb4c139"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -249,6 +258,17 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                     ""action"": ""HoldFire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""76987b22-0597-40fc-9e7f-1b04d755dd5b"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Recarga"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -262,6 +282,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_View = m_Player.FindAction("View", throwIfNotFound: true);
         m_Player_HoldFire = m_Player.FindAction("HoldFire", throwIfNotFound: true);
+        m_Player_Recarga = m_Player.FindAction("Recarga", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -326,6 +347,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_View;
     private readonly InputAction m_Player_HoldFire;
+    private readonly InputAction m_Player_Recarga;
     public struct PlayerActions
     {
         private @PlayerInputAction m_Wrapper;
@@ -335,6 +357,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @View => m_Wrapper.m_Player_View;
         public InputAction @HoldFire => m_Wrapper.m_Player_HoldFire;
+        public InputAction @Recarga => m_Wrapper.m_Player_Recarga;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -359,6 +382,9 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                 @HoldFire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHoldFire;
                 @HoldFire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHoldFire;
                 @HoldFire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHoldFire;
+                @Recarga.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRecarga;
+                @Recarga.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRecarga;
+                @Recarga.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRecarga;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -378,6 +404,9 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                 @HoldFire.started += instance.OnHoldFire;
                 @HoldFire.performed += instance.OnHoldFire;
                 @HoldFire.canceled += instance.OnHoldFire;
+                @Recarga.started += instance.OnRecarga;
+                @Recarga.performed += instance.OnRecarga;
+                @Recarga.canceled += instance.OnRecarga;
             }
         }
     }
@@ -389,5 +418,6 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnView(InputAction.CallbackContext context);
         void OnHoldFire(InputAction.CallbackContext context);
+        void OnRecarga(InputAction.CallbackContext context);
     }
 }

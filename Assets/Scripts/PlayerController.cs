@@ -13,10 +13,13 @@ public class PlayerController : MonoBehaviour
     public float rotationXSensitivity;
     public float rotationYSensitivity;
     private float timeDelay;
+    private float tiempoRecarga;
     // public GameObject impacto;
 
     //Manejo Municion
-    public GameObject municion; 
+    public GameObject municion;
+
+    public Slider recarga; 
 
 
     // --- Muzzle ---
@@ -71,6 +74,18 @@ public class PlayerController : MonoBehaviour
 
         mHoldFire = mInputAction.Player.HoldFire;
         mHoldFire.Enable();
+
+        mInputAction.Player.Recarga.performed += Recargar;
+        mInputAction.Player.Recarga.Enable();
+    }
+    private void Recargar(InputAction.CallbackContext obj)
+    {
+        if(municion.transform.GetChild(0).GetComponent<Text>().text!=30.ToString())
+            {
+            recarga.gameObject.SetActive(true);
+            Debug.Log("recargar");
+        }
+        
     }
 
 
@@ -175,6 +190,7 @@ public class PlayerController : MonoBehaviour
         mInputAction.Player.Jump.Disable();
         mMovementAction.Disable();
         mInputAction.Disable();
+        mInputAction.Player.Recarga.Disable();
         //mHoldFire.Disable();
         //mInputAction.Player.View.Disable();
     }
@@ -223,14 +239,24 @@ public class PlayerController : MonoBehaviour
         #endregion
         //Disparo
         timeDelay += Time.deltaTime;
-        if (timeDelay>=0.1f && mHoldFire.phase == InputActionPhase.Performed && munActual>0)
+        if (timeDelay>=0.1f && mHoldFire.phase == InputActionPhase.Performed && munActual>0 && !recarga.IsActive())
         {
             timeDelay = 0;
             FireWeapon();
             
         }
-        Debug.Log(munActual);
-    
+        //Debug.Log(munActual);
+        if(recarga.IsActive())
+        {
+            
+            recarga.value += 0.02f;
+        }
+        if(recarga.value>=1)
+        {
+            recarga.gameObject.SetActive(false);
+            recarga.value = 0f;
+            municion.transform.GetChild(0).GetComponent<Text>().text = 30.ToString();
+        }
     }
   
 
