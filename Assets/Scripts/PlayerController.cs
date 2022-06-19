@@ -1,16 +1,22 @@
 
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 1f;
     public float jumpForce = 3f;
-    public float fireRange = 5f;
+    public float fireRange = 15f;
     public float rotationXSensitivity;
     public float rotationYSensitivity;
-    public GameObject explosion;
+    private float timeDelay;
+    // public GameObject impacto;
+
+    //Manejo Municion
+    public GameObject municion; 
 
 
     // --- Muzzle ---
@@ -27,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private PlayerInputAction mInputAction;
     private InputAction mMovementAction;
     private InputAction mViewAction;
+    private InputAction mHoldFire;
     private Rigidbody mRigidbody;
     private Transform mFirePoint;
     private Transform mCameraTransform;
@@ -41,6 +48,7 @@ public class PlayerController : MonoBehaviour
         mRigidbody = GetComponent<Rigidbody>();
         mFirePoint = transform.Find("FirePoint");
         mCameraTransform = transform.Find("Main Camera");
+        
 
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -51,8 +59,8 @@ public class PlayerController : MonoBehaviour
         mInputAction.Player.Jump.performed += DoJump;
         mInputAction.Player.Jump.Enable();
 
-        mInputAction.Player.Fire.performed += DoFire;
-        mInputAction.Player.Fire.Enable();
+        //mInputAction.Player.Fire.performed += DoFire;
+        //mInputAction.Player.Fire.Enable();
 
 
         mViewAction = mInputAction.Player.View;
@@ -61,11 +69,13 @@ public class PlayerController : MonoBehaviour
         mMovementAction = mInputAction.Player.Movement;
         mMovementAction.Enable();
 
+        mHoldFire = mInputAction.Player.HoldFire;
+        mHoldFire.Enable();
     }
 
 
-
-    private void DoFire(InputAction.CallbackContext obj)
+  
+    /*private void DoFire(InputAction.CallbackContext obj)
     {
         // Lanzar un raycast
         RaycastHit hit;
@@ -89,8 +99,8 @@ public class PlayerController : MonoBehaviour
             Color.red,
             .25f
         );
-        FireWeapon();
-    }
+    }*/
+
     
     public void FireWeapon()
     {
@@ -110,36 +120,52 @@ public class PlayerController : MonoBehaviour
             Invoke("ReEnableDisabledProjectile", 3);
         }
 
-        // --- Handle Audio ---
+        // audio
         if (source != null)
         {
-            // --- Sometimes the source is not attached to the weapon for easy instantiation on quick firing weapons like machineguns, 
-            // so that each shot gets its own audio source, but sometimes it's fine to use just 1 source. We don't want to instantiate 
-            // the parent gameobject or the program will get stuck in a loop, so we check to see if the source is a child object ---
+
             if (source.transform.IsChildOf(transform))
             {
                 source.Play();
             }
             else
             {
-                // --- Instantiate prefab for audio, delete after a few seconds ---
                 AudioSource newAS = Instantiate(source);
                 if ((newAS = Instantiate(source)) != null && newAS.outputAudioMixerGroup != null && newAS.outputAudioMixerGroup.audioMixer != null)
                 {
-                    // --- Change pitch to give variation to repeated shots ---
                     newAS.outputAudioMixerGroup.audioMixer.SetFloat("Pitch", UnityEngine.Random.Range(audioPitch.x, audioPitch.y));
                     newAS.pitch = UnityEngine.Random.Range(audioPitch.x, audioPitch.y);
 
-                    // --- Play the gunshot sound ---
                     newAS.PlayOneShot(GunShotClip);
 
-                    // --- Remove after a few seconds. Test script only. When using in project I recommend using an object pool ---
                     Destroy(newAS.gameObject, 4);
                 }
             }
         }
+        //Raycast
+        RaycastHit hit;
 
-        // --- Insert custom code here to shoot projectile or hitscan from weapon ---
+        if (Physics.Raycast(
+            mFirePoint.position,
+            mCameraTransform.forward,
+            out hit,
+            fireRange
+        ))
+        {
+            // Hubo una colision
+            Debug.Log(hit.collider.name);
+         /*   GameObject nuevoImpacto =
+                Instantiate(impacto, hit.point, transform.rotation);
+            Destroy(nuevoImpacto, 1f);*/
+        }
+
+        Debug.DrawRay(mFirePoint.position,
+            transform.forward * fireRange,
+            Color.red,
+            .25f
+        );
+
+        municion.transform.GetChild(0).GetComponent<Text>().text = (int.Parse(municion.transform.GetChild(0).GetComponent<Text>().text) - 1).ToString();
 
     }
 
@@ -149,11 +175,13 @@ public class PlayerController : MonoBehaviour
         mInputAction.Player.Jump.Disable();
         mMovementAction.Disable();
         mInputAction.Disable();
+        //mHoldFire.Disable();
         //mInputAction.Player.View.Disable();
     }
 
     private void Update()
     {
+        int munActual = int.Parse(municion.transform.GetChild(0).GetComponent<Text>().text);
         #region Rotacion
         Vector2 deltaPos = mViewAction.ReadValue<Vector2>();
         transform.Rotate(
@@ -193,7 +221,18 @@ public class PlayerController : MonoBehaviour
             onGround = false;
         }
         #endregion
+        //Disparo
+        timeDelay += Time.deltaTime;
+        if (timeDelay>=0.1f && mHoldFire.phase == InputActionPhase.Performed && munActual>0)
+        {
+            timeDelay = 0;
+            FireWeapon();
+            
+        }
+        Debug.Log(munActual);
+    
     }
+  
 
     private void DoJump(InputAction.CallbackContext obj)
     {

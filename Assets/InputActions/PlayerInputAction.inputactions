@@ -43,12 +43,12 @@
                 },
                 {
                     "name": "HoldFire",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "054d00a5-991a-4ae0-b8bf-d19f290ebbd9",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Integer",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -221,7 +221,7 @@
                     "name": "",
                     "id": "cf55f57b-a7e1-4c9d-8fe8-5664137c236d",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Press",
+                    "interactions": "Press(pressPoint=1.401298E-45)",
                     "processors": "",
                     "groups": "",
                     "action": "HoldFire",
