@@ -176,6 +176,12 @@ public class PlayerController : MonoBehaviour
         {
             // Hubo una colision
             Debug.Log(hit.collider.transform.tag);
+            if(hit.collider.tag == "Enemy")
+            {
+                //Debug.Log("colision enemigo");
+                hit.collider.GetComponentInParent<EnemyController>().vida-=10;
+                
+            }
          /*   GameObject nuevoImpacto =
                 Instantiate(impacto, hit.point, transform.rotation);
             Destroy(nuevoImpacto, 1f);*/
@@ -289,7 +295,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (collision.transform.CompareTag("Enemy"))
         {
-            //recibir daño
+            //recibir daï¿½o
         }
     }
 
