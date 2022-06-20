@@ -17,6 +17,8 @@ public class WaveManager : MonoBehaviour
     public float timerActual;
     private GameObject enemigoGrande;
     private GameObject enemigoPequeno;
+    public Text ContadorEnemigosSmall;
+    public Text ContadorEnemigosBig;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,7 +49,16 @@ public class WaveManager : MonoBehaviour
                             posx = Random.Range(limiteXNegativo, limiteX);
                             posz = Random.Range(limiteZNegativo, limiteZ);
                         }
-                        GameObject obj = Instantiate(enemigoPequeno, new Vector3(posx, 0.63f, posz), Quaternion.identity);
+                        int Index = Random.Range(0, 10);
+                        GameObject obj;
+                        if (Index <= 2)
+                        {
+                            obj = Instantiate(enemigoGrande, new Vector3(posx, 0.63f, posz), Quaternion.identity);
+                        }
+                        else
+                        {
+                            obj  = Instantiate(enemigoPequeno, new Vector3(posx, 0.63f, posz), Quaternion.identity);
+                        }
                         obj.GetComponent<EnemyController>().followAt = player.transform;
                         //Debug.Log("instanciar un enemigo en coordenadas posx y pos z");
                     }
@@ -70,7 +81,13 @@ public class WaveManager : MonoBehaviour
                     textoWaves.SetActive(true);
                     textoWaves.GetComponent<Text>().color = new Color(255f, 255f, 255f, 1f);
                 }
+                if(GameObject.FindGameObjectsWithTag("EnemySmall").Length <= 0 && GameObject.FindGameObjectsWithTag("EnemyBig").Length <= 0)
+                {
+                    timerActual = -1;
+                }
             }
+            ContadorEnemigosSmall.text = GameObject.FindGameObjectsWithTag("EnemySmall").Length + "";
+            ContadorEnemigosBig.text = GameObject.FindGameObjectsWithTag("EnemyBig").Length + "";
         }
     }
     public void iniciarWaves()
