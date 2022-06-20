@@ -33,7 +33,8 @@ public class GameManager : MonoBehaviour
         {
             quitarPausa();
         }
-        else pausa();
+        else if (!pausaEstado && !menuInicio.active) {
+            pausa(); }
     }
     public void pausa()
     {

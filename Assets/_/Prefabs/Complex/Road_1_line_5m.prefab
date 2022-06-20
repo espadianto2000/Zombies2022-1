@@ -150,6 +150,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Road_1_line (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8499614720051398551, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
+      propertyPath: m_TagString
+      value: piso
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
 --- !u!4 &4603022224380445062 stripped
@@ -211,6 +215,10 @@ PrefabInstance:
     - target: {fileID: 8499614720051398551, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
       propertyPath: m_Name
       value: Road_1_line
+      objectReference: {fileID: 0}
+    - target: {fileID: 8499614720051398551, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
+      propertyPath: m_TagString
+      value: piso
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}

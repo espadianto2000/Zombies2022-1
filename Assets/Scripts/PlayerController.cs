@@ -175,7 +175,7 @@ public class PlayerController : MonoBehaviour
         ))
         {
             // Hubo una colision
-            Debug.Log(hit.collider.name);
+            Debug.Log(hit.collider.transform.tag);
          /*   GameObject nuevoImpacto =
                 Instantiate(impacto, hit.point, transform.rotation);
             Destroy(nuevoImpacto, 1f);*/
@@ -248,7 +248,7 @@ public class PlayerController : MonoBehaviour
         }
         #endregion
 
-        rotationXSensitivity = (0.049f * gm.menuPausa.transform.GetChild(6).GetComponent<Slider>().value) + 0.01f;
+        rotationXSensitivity = (0.49f * gm.menuPausa.transform.GetChild(6).GetComponent<Slider>().value) + 0.01f;
         rotationYSensitivity = (19f * gm.menuPausa.transform.GetChild(5).GetComponent<Slider>().value) + 1f;
 
         //Disparo
@@ -281,9 +281,16 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("collision");
-        onGround = true;
-        jumpPressed = false;
+        if (collision.transform.CompareTag("piso"))
+        {
+            Debug.Log("collision");
+            onGround = true;
+            jumpPressed = false;
+        }
+        else if (collision.transform.CompareTag("Enemy"))
+        {
+            //recibir daño
+        }
     }
 
 }

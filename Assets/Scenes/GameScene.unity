@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -205,6 +205,10 @@ PrefabInstance:
     - target: {fileID: 2526891196296273213, guid: 33ae3a99eddf3ea469439cebc3eb3d44, type: 3}
       propertyPath: m_Name
       value: Crossroads_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2526891196296273213, guid: 33ae3a99eddf3ea469439cebc3eb3d44, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 2754476246068399147, guid: 33ae3a99eddf3ea469439cebc3eb3d44, type: 3}
       propertyPath: m_IsActive
@@ -552,6 +556,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Road_1_line (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8499614720051398551, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
+      propertyPath: m_TagString
+      value: piso
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
 --- !u!4 &102077656 stripped
@@ -791,6 +799,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Road_1_line (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8499614720051398551, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
+      propertyPath: m_TagString
+      value: piso
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
 --- !u!4 &162808509 stripped
@@ -976,6 +988,10 @@ PrefabInstance:
     - target: {fileID: 8499614720051398551, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
       propertyPath: m_Name
       value: Road_1_line (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8499614720051398551, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
+      propertyPath: m_TagString
+      value: piso
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
@@ -1371,6 +1387,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Road_1_line_turn (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 9108555624026156615, guid: 98ccc622328d9af478c80599fd4022f0, type: 3}
+      propertyPath: m_TagString
+      value: piso
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98ccc622328d9af478c80599fd4022f0, type: 3}
 --- !u!4 &233992009 stripped
@@ -1507,6 +1527,10 @@ PrefabInstance:
     - target: {fileID: 9108555624026156615, guid: 98ccc622328d9af478c80599fd4022f0, type: 3}
       propertyPath: m_Name
       value: Road_1_line_turn
+      objectReference: {fileID: 0}
+    - target: {fileID: 9108555624026156615, guid: 98ccc622328d9af478c80599fd4022f0, type: 3}
+      propertyPath: m_TagString
+      value: piso
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98ccc622328d9af478c80599fd4022f0, type: 3}
@@ -4221,6 +4245,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Road_1_line (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 8499614720051398551, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
+      propertyPath: m_TagString
+      value: piso
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
 --- !u!4 &724316408 stripped
@@ -5430,6 +5458,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Road_1_line
       objectReference: {fileID: 0}
+    - target: {fileID: 8499614720051398551, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
+      propertyPath: m_TagString
+      value: piso
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
 --- !u!4 &958958783 stripped
@@ -5769,6 +5801,10 @@ PrefabInstance:
     - target: {fileID: 9108555624026156615, guid: 98ccc622328d9af478c80599fd4022f0, type: 3}
       propertyPath: m_Name
       value: Road_1_line_turn (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9108555624026156615, guid: 98ccc622328d9af478c80599fd4022f0, type: 3}
+      propertyPath: m_TagString
+      value: piso
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98ccc622328d9af478c80599fd4022f0, type: 3}
@@ -8464,6 +8500,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Road_1_line_turn (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 9108555624026156615, guid: 98ccc622328d9af478c80599fd4022f0, type: 3}
+      propertyPath: m_TagString
+      value: piso
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98ccc622328d9af478c80599fd4022f0, type: 3}
 --- !u!4 &1593308244 stripped
@@ -8946,6 +8986,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Road_1_line (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 8499614720051398551, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
+      propertyPath: m_TagString
+      value: piso
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
 --- !u!4 &1610744308 stripped
@@ -9324,68 +9368,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7861350953103440092, guid: efe06c0608269fb45a852b9c1aff7526, type: 3}
   m_PrefabInstance: {fileID: 1682852726}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1689154144
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1749879097}
-    m_Modifications:
-    - target: {fileID: 7303116509305054165, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303116509305054165, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303116509305054165, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303116509305054165, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303116509305054165, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303116509305054165, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303116509305054165, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303116509305054165, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303116509305054165, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303116509305054165, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303116509305054165, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8499614720051398551, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
-      propertyPath: m_Name
-      value: Road_1_line (3)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
---- !u!4 &1689154145 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7303116509305054165, guid: dfec8d9b723b08e4ab4463a1b8f9cd7d, type: 3}
-  m_PrefabInstance: {fileID: 1689154144}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1699443829
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9604,7 +9586,6 @@ Transform:
   - {fileID: 162808509}
   - {fileID: 281356116}
   - {fileID: 1019378401}
-  - {fileID: 1689154145}
   - {fileID: 102077656}
   - {fileID: 1610744308}
   - {fileID: 724316408}

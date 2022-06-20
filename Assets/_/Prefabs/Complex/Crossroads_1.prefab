@@ -749,6 +749,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crossroads_1_lines_walk
       objectReference: {fileID: 0}
+    - target: {fileID: 2450546581216251122, guid: 566725c8dfb238f419a8e9342ffaab05, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2450546581216251122, guid: 566725c8dfb238f419a8e9342ffaab05, type: 3}
+      propertyPath: m_TagString
+      value: piso
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 566725c8dfb238f419a8e9342ffaab05, type: 3}
 --- !u!4 &1019768421271913900 stripped

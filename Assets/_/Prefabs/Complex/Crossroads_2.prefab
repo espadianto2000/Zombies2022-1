@@ -1287,6 +1287,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crossroads_1_lines_2_walk
       objectReference: {fileID: 0}
+    - target: {fileID: 592102083805549752, guid: 610857578956dd14086cc62aeb1c45e0, type: 3}
+      propertyPath: m_TagString
+      value: piso
+      objectReference: {fileID: 0}
     - target: {fileID: 8487467853739938755, guid: 610857578956dd14086cc62aeb1c45e0, type: 3}
       propertyPath: m_RootOrder
       value: 0
