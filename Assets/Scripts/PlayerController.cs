@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public Image Cara;
     public float rotationXSensitivity;
     public float rotationYSensitivity;
+    public Sprite[] caras;
     public GameManager gm;
     
     private float timeDelay;
@@ -320,8 +321,33 @@ public class PlayerController : MonoBehaviour
         }
         vida.value = health / maxHealth;
         porcentajeVida.text = (Math.Round(vida.value * 100))+"%";
+        if (health <= 0)
+        {
+            gm.morir();
+        }
+        else
+        {
+            Cara.sprite = caras[((int)Math.Floor((1.01f - vida.value) / 0.2f)) < 0 ? 0 : ((int)Math.Floor((1.01f - vida.value) / 0.2f))];
+        }
     }
-  
+    private void FixedUpdate()
+    {
+        if (grace)
+        {
+            if (Cara.enabled)
+            {
+                Cara.enabled = false;
+            }
+            else
+            {
+                Cara.enabled = true;
+            }
+        }
+        else
+        {
+            Cara.enabled = true;
+        }
+    }
 
     private void DoJump(InputAction.CallbackContext obj)
     {
@@ -355,5 +381,5 @@ public class PlayerController : MonoBehaviour
             health -= 2f;
         }
     }
-
+    
 }

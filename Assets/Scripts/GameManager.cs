@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject menuInicio;
     public GameObject menuPausa;
+    public GameObject menuMuerte;
     public bool pausaEstado = false;
     private float minSensX = 0.01f;
     private float minSensY = 1;
@@ -29,11 +31,11 @@ public class GameManager : MonoBehaviour
     }
     public void manejoPausa(InputAction.CallbackContext obj)
     {
-        if (pausaEstado && !menuInicio.active)
+        if (pausaEstado && !menuInicio.active && !menuMuerte.active)
         {
             quitarPausa();
         }
-        else if (!pausaEstado && !menuInicio.active) {
+        else if (!pausaEstado && !menuInicio.active && !menuMuerte.active) {
             pausa(); }
     }
     public void pausa()
@@ -51,5 +53,16 @@ public class GameManager : MonoBehaviour
         menuPausa.SetActive(false);
         pausaEstado = false;
         Cursor.lockState = CursorLockMode.Locked;
+    }
+    public void Reset()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void morir()
+    {
+        menuMuerte.SetActive(true);
+        pausaEstado = true;
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0;
     }
 }
