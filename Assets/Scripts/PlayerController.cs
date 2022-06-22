@@ -10,6 +10,17 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 1f;
     public float jumpForce = 3f;
     public float fireRange = 15f;
+    public float maxHealth;
+    public float health;
+    public float timerRegenMax;
+    public float timerRegen;
+    public bool grace = false;
+    public float graceTimeMax;
+    public float graceTime;
+    public bool curar;
+    public Slider vida;
+    public Text porcentajeVida;
+    public Image Cara;
     public float rotationXSensitivity;
     public float rotationYSensitivity;
     public GameManager gm;
@@ -55,7 +66,8 @@ public class PlayerController : MonoBehaviour
         mRigidbody = GetComponent<Rigidbody>();
         mFirePoint = transform.Find("FirePoint");
         mCameraTransform = transform.Find("Main Camera");
-        
+        health = maxHealth;
+        graceTime = graceTimeMax;
 
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -277,6 +289,37 @@ public class PlayerController : MonoBehaviour
             recarga.value = 0f;
             municion.transform.GetChild(0).GetComponent<Text>().text = 30.ToString();
         }
+        if (grace)
+        {
+            graceTime-=Time.deltaTime;
+            if (graceTime <= 0)
+            {
+                grace = false;
+                graceTime = graceTimeMax;
+                timerRegen = timerRegenMax;
+            }
+        }
+        else if(!curar)
+        {
+            timerRegen -= Time.deltaTime;
+            if (timerRegen <= 0)
+            {
+                curar = true;
+            }
+        }
+        if (curar)
+        {
+            if(health < maxHealth)
+            {
+                health+=Time.deltaTime;
+            }
+            else
+            {
+                health = maxHealth;
+            }
+        }
+        vida.value = health / maxHealth;
+        porcentajeVida.text = (Math.Round(vida.value * 100))+"%";
     }
   
 
@@ -289,13 +332,27 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.transform.CompareTag("piso"))
         {
-            Debug.Log("collision");
+            //Debug.Log("collision");
             onGround = true;
             jumpPressed = false;
         }
-        else if (collision.transform.CompareTag("Enemy"))
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        Debug.Log(collision.transform.tag);
+        if (collision.transform.CompareTag("Enemy") || collision.transform.CompareTag("EnemySmall") || collision.transform.CompareTag("EnemyBig"))
         {
-            //recibir da�o
+            Debug.Log("recibirDano");
+            recibirDano();
+        }
+    }
+    private void recibirDano()
+    {
+        if (!grace)
+        {
+            curar = false;
+            grace = true;
+            health -= 2f;
         }
     }
 
