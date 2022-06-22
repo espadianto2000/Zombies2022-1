@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
         if(municion.transform.GetChild(0).GetComponent<Text>().text!=30.ToString())
             {
             recarga.gameObject.SetActive(true);
-            Debug.Log("recargar");
+            //Debug.Log("recargar");
         }
         
     }
@@ -188,12 +188,23 @@ public class PlayerController : MonoBehaviour
         ))
         {
             // Hubo una colision
-            Debug.Log(hit.collider.transform.tag);
+            //Debug.Log(hit.collider.transform.tag);
             if(hit.collider.tag == "Enemy")
             {
                 //Debug.Log("colision enemigo");
-                hit.collider.GetComponentInParent<EnemyController>().vida-=10;
-                
+                if(hit.collider.name == "mixamorig:Head")
+                {
+                    Debug.Log("headshot");
+                    hit.collider.GetComponentInParent<EnemyController>().vida -= 25;
+
+                }
+                else
+                {
+                    hit.collider.GetComponentInParent<EnemyController>().vida -= 10;
+                    Debug.Log(hit.collider.name);
+
+                }
+
             }
          /*   GameObject nuevoImpacto =
                 Instantiate(impacto, hit.point, transform.rotation);
@@ -272,7 +283,7 @@ public class PlayerController : MonoBehaviour
 
         //Disparo
         timeDelay += Time.deltaTime;
-        if (timeDelay>=0.1f && mHoldFire.phase == InputActionPhase.Performed && munActual>0 && !recarga.IsActive())
+        if (timeDelay>=0.1f && mHoldFire.phase == InputActionPhase.Performed && munActual>0 && !recarga.IsActive() && !gm.GetComponent<GameManager>().pausaEstado)
         {
             timeDelay = 0;
             FireWeapon();
@@ -365,10 +376,10 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionStay(Collision collision)
     {
-        Debug.Log(collision.transform.tag);
+        //Debug.Log(collision.transform.tag);
         if (collision.transform.CompareTag("Enemy") || collision.transform.CompareTag("EnemySmall") || collision.transform.CompareTag("EnemyBig"))
         {
-            Debug.Log("recibirDano");
+           // Debug.Log("recibirDano");
             recibirDano();
         }
     }
