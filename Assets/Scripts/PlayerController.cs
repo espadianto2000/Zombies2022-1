@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public float rotationYSensitivity;
     public Sprite[] caras;
     public GameManager gm;
+    public float velocidadRecarga;
     
     private float timeDelay;
     private float tiempoRecarga;
@@ -293,7 +294,7 @@ public class PlayerController : MonoBehaviour
         if(recarga.IsActive())
         {
             
-            recarga.value += 0.02f;
+            recarga.value += velocidadRecarga*Time.deltaTime;
         }
         if(recarga.value>=1)
         {
