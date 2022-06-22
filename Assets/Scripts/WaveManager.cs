@@ -19,6 +19,7 @@ public class WaveManager : MonoBehaviour
     private GameObject enemigoPequeno;
     public Text ContadorEnemigosSmall;
     public Text ContadorEnemigosBig;
+    public Text TiempoRestante;
     // Start is called before the first frame update
     void Start()
     {
@@ -85,9 +86,18 @@ public class WaveManager : MonoBehaviour
                 {
                     timerActual = -1;
                 }
+
             }
             ContadorEnemigosSmall.text = GameObject.FindGameObjectsWithTag("EnemySmall").Length + "";
             ContadorEnemigosBig.text = GameObject.FindGameObjectsWithTag("EnemyBig").Length + "";
+
+
+        }
+        TiempoRestante.text = "Tiempo para siguiente oleada: " + (Mathf.Round(timerActual)).ToString();
+
+        if (!contar)
+        {
+            TiempoRestante.text = "Tiempo para siguiente oleada:";
         }
     }
     public void iniciarWaves()

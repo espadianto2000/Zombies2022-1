@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followAt: {fileID: 0}
-  distanceToFollow: 10
+  distanceToFollow: 15
   data: {fileID: 11400000, guid: b9b0f0a462fc18c41910f5f7a336c507, type: 2}
   vida: 0
   vidaMax: 0
@@ -783,6 +783,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d638d394710d6704ebcb715b8df91d8a, type: 3}
+--- !u!1 &8409018091572693206 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d638d394710d6704ebcb715b8df91d8a, type: 3}
+  m_PrefabInstance: {fileID: 8679488401676383623}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9221408078647677548 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d638d394710d6704ebcb715b8df91d8a, type: 3}
@@ -801,11 +806,6 @@ GameObject:
 --- !u!1 &5921729450566989703 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6170625038081293824, guid: d638d394710d6704ebcb715b8df91d8a, type: 3}
-  m_PrefabInstance: {fileID: 8679488401676383623}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8409018091572693206 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d638d394710d6704ebcb715b8df91d8a, type: 3}
   m_PrefabInstance: {fileID: 8679488401676383623}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &4299986252766861519 stripped
