@@ -20,6 +20,7 @@ public class WaveManager : MonoBehaviour
     public Text ContadorEnemigosSmall;
     public Text ContadorEnemigosBig;
     public Text TiempoRestante;
+    public Text mensajeMuerte;
     // Start is called before the first frame update
     void Start()
     {
@@ -78,6 +79,16 @@ public class WaveManager : MonoBehaviour
                     Invoke("InstanciarWave", 2f);
                     contar = false;
                     contadorWaves++;
+                    mensajeMuerte.text = "Sobreviviste " + (contadorWaves - 1);
+                    if (contadorWaves == 2)
+                    {
+                        mensajeMuerte.text += " oleada";
+                    }
+                    else
+                    {
+                        mensajeMuerte.text += " oleadas";
+                    }
+                    
                     textoWaves.GetComponent<Text>().text = "oleada " + contadorWaves;
                     textoWaves.SetActive(true);
                     textoWaves.GetComponent<Text>().color = new Color(255f, 255f, 255f, 1f);
@@ -106,6 +117,7 @@ public class WaveManager : MonoBehaviour
         gm.quitarPausa();
         iniciar = true;
         contadorWaves++;
+        mensajeMuerte.text = "Sobreviviste " + (contadorWaves - 1) + " oleadas";
         textoWaves.GetComponent<Text>().text = "oleada " + contadorWaves;
         textoWaves.SetActive(true);
         textoWaves.GetComponent<Text>().color = new Color(255f, 255f, 255f, 1f);
